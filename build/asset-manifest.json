@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/cri-crm/static/css/main.f2c2b8c7.css",
-    "main.js": "/cri-crm/static/js/main.4808c696.js",
-    "static/js/787.09e1aeb7.chunk.js": "/cri-crm/static/js/787.09e1aeb7.chunk.js",
-    "static/media/ci-cosmetic-clinic.jpg": "/cri-crm/static/media/ci-cosmetic-clinic.6077a3ea23c6b37f48d2.jpg",
-    "index.html": "/cri-crm/index.html",
-    "main.f2c2b8c7.css.map": "/cri-crm/static/css/main.f2c2b8c7.css.map",
-    "main.4808c696.js.map": "/cri-crm/static/js/main.4808c696.js.map",
-    "787.09e1aeb7.chunk.js.map": "/cri-crm/static/js/787.09e1aeb7.chunk.js.map"
+    "main.css": "/static/css/main.f2c2b8c7.css",
+    "main.js": "/static/js/main.7211921d.js",
+    "static/js/787.09e1aeb7.chunk.js": "/static/js/787.09e1aeb7.chunk.js",
+    "static/media/ci-cosmetic-clinic.jpg": "/static/media/ci-cosmetic-clinic.6077a3ea23c6b37f48d2.jpg",
+    "index.html": "/index.html",
+    "main.f2c2b8c7.css.map": "/static/css/main.f2c2b8c7.css.map",
+    "main.7211921d.js.map": "/static/js/main.7211921d.js.map",
+    "787.09e1aeb7.chunk.js.map": "/static/js/787.09e1aeb7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f2c2b8c7.css",
-    "static/js/main.4808c696.js"
+    "static/js/main.7211921d.js"
   ]
 }
