@@ -9,7 +9,7 @@ import Booking from "../Components/View/CRM/OT/Booking";
 export default function Routing() {
   let elements = useRoutes([
     {
-      path: "/",
+      path: "/cri-crm",
       element: <Login />,
     },
     {

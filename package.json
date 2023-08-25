@@ -2,7 +2,7 @@
   "name": "crm-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://romulaspm.github.io/",
+  "homepage": "https://romulaspm.github.io/cri-crm/",
   "dependencies": {
     "@tauri-apps/api": "^1.4.0",
     "@testing-library/jest-dom": "^5.16.5",
