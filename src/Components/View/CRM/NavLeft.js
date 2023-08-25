@@ -36,7 +36,7 @@ const NavLeft = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/customers")
+      .get("https://cri-crm-d5cd0ee5dc74.herokuapp.com/customers")
       .then((res) => {
         console.log(res);
         setSearch(res.data);

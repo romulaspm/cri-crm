@@ -19,8 +19,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    fetch("http://localhost:8000/auth", {
+    console.log(process.env);
+    fetch("https://cri-crm-d5cd0ee5dc74.herokuapp.com/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,10 @@ const Login = () => {
               <h4>CRM - Login</h4>
             </CardHeader>
             <CardBody>
-              <Form action="http://localhost:8000/auth" method="POST"></Form>
+              <Form
+              //  action="https://cri-crm-d5cd0ee5dc74.herokuapp.com/auth"
+              //method="POST"
+              ></Form>
               Name :
               <Input
                 type="text"
@@ -69,10 +72,7 @@ const Login = () => {
                   setPassword(e.target.value);
                 }}
               />
-              <Button type="submit" onClick={handleSubmit}>
-                {" "}
-                Login
-              </Button>
+              <Button onClick={handleSubmit}> Login</Button>
             </CardBody>
           </Card>
         </Col>

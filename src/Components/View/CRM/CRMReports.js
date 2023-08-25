@@ -8,7 +8,7 @@ const CRMReports = () => {
   const [data, setData] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8000/customers").then((res) => {
+    axios.get("https://cri-crm-d5cd0ee5dc74.herokuapp.com/customers").then((res) => {
       setData(res.data);
       console.log(res);
     });

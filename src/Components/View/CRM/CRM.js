@@ -19,13 +19,15 @@ import {
   ToastHeader,
 } from "reactstrap";
 import NavLeft from "./NavLeft";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, json } from "react-router-dom";
 
 const CRM = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const authData = location.state;
-  const [token] = useState(authData.token ? authData.token : "");
+  const [token] = useState(
+    authData ? authData.token : JSON.parse(sessionStorage.getItem("token"))
+  );
   const [fname, setFname] = useState("");
   const [sname, setSname] = useState("");
   //const [id, setId] = useState("");
@@ -63,9 +65,10 @@ const CRM = () => {
   };
 
   useEffect(() => {
+    console.log(JSON.parse(sessionStorage.getItem("token")));
     if (token)
       axios
-        .get("http://localhost:8000/appointments", {
+        .get("https://cri-crm-d5cd0ee5dc74.herokuapp.com/appointments", {
           params: {
             date: `${formatDate(date)}`,
             fromDate: `${formatDate(date)}`,
@@ -109,20 +112,23 @@ const CRM = () => {
 
   const submitHandler = async () => {
     try {
-      const response = await axios.post("http://localhost:8000/add-customer", {
-        fname,
-        sname,
-        contactno,
-        nationality,
-        locality,
-        address,
-        treatmenttype,
-        remarks,
-        patientcoordinator,
-        date,
-        dob,
-        sex,
-      });
+      const response = await axios.post(
+        "https://cri-crm-d5cd0ee5dc74.herokuapp.com/add-customer",
+        {
+          fname,
+          sname,
+          contactno,
+          nationality,
+          locality,
+          address,
+          treatmenttype,
+          remarks,
+          patientcoordinator,
+          date,
+          dob,
+          sex,
+        }
+      );
 
       if (response.status === 200) {
         // Handle successful login
@@ -144,8 +150,6 @@ const CRM = () => {
       submitHandler();
       setVerified(false);
     }
-
-    console.log(authData);
   }, [verified]);
 
   const searchUpdateHandler = (data) => {
@@ -174,7 +178,7 @@ const CRM = () => {
       alert("MRN && edit");
       try {
         const response = await axios.post(
-          "http://localhost:8000/edit-customer",
+          "https://cri-crm-d5cd0ee5dc74.herokuapp.com/edit-customer",
           {
             fname,
             sname,

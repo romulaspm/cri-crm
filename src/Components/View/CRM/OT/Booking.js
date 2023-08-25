@@ -41,7 +41,7 @@ const Booking = () => {
 
   const getAppointments = () => {
     axios
-      .get("http://localhost:8000/appointments", {
+      .get("https://cri-crm-d5cd0ee5dc74.herokuapp.com/appointments", {
         params: { date: `${formatDate(selectedDate)}` },
         headers: {
           Authorization: `Bearer ${data.token && data.token}`,
@@ -83,7 +83,7 @@ const Booking = () => {
       alert("Appointment already taken on the same date");
     } else {
       axios
-        .post("http://localhost:8000/add-appointment", {
+        .post("https://cri-crm-d5cd0ee5dc74.herokuapp.com/add-appointment", {
           mrn: data.otData.mrn,
           date: formatDate(selectedDate),
           time: selectedTime,
@@ -112,7 +112,7 @@ const Booking = () => {
   const deleteAppointmentHandler = (date, id) => {
     setDeleteResponseModal(true);
     axios
-      .delete("http://localhost:8000/delete-appointment", {
+      .delete("https://cri-crm-d5cd0ee5dc74.herokuapp.com/delete-appointment", {
         params: { date: date, id: id },
         headers: {
           Authorization: `Bearer ${data.authData && data.authData.token}`,
@@ -122,7 +122,7 @@ const Booking = () => {
         if (res) {
           console.log(res);
           axios
-            .get("http://localhost:8000/appointments", {
+            .get("https://cri-crm-d5cd0ee5dc74.herokuapp.com/appointments", {
               params: { date: `${formatDate(selectedDate)}` },
               headers: {
                 Authorization: `Bearer ${data.authData && data.authData.token}`,
