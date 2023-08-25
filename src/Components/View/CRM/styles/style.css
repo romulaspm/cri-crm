@@ -1,0 +1,17 @@
+.custom-col {
+  width: 150px !important;
+}
+.custom-col-s {
+  width: 150px;
+}
+.custom-col-r {
+  width: 80px !important;
+}
+.invoce-header {
+  background-color: rgb(126, 169, 255) !important;
+  color: red !important;
+}
+
+.pil h6 {
+  color: red;
+}
