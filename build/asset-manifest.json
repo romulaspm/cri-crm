@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f2c2b8c7.css",
+    "main.js": "/static/js/main.e99ae9c5.js",
+    "static/js/787.09e1aeb7.chunk.js": "/static/js/787.09e1aeb7.chunk.js",
+    "static/media/ci-cosmetic-clinic.jpg": "/static/media/ci-cosmetic-clinic.6077a3ea23c6b37f48d2.jpg",
+    "index.html": "/index.html",
+    "main.f2c2b8c7.css.map": "/static/css/main.f2c2b8c7.css.map",
+    "main.e99ae9c5.js.map": "/static/js/main.e99ae9c5.js.map",
+    "787.09e1aeb7.chunk.js.map": "/static/js/787.09e1aeb7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2c2b8c7.css",
+    "static/js/main.e99ae9c5.js"
+  ]
+}
