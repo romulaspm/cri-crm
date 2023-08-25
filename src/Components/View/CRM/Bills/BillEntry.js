@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState, React, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Col, Container, Input, Row, Table } from "reactstrap";
@@ -32,11 +31,11 @@ const BillEntry = () => {
     console.log(data);
     console.log(inputValues);
     if (inputValues) {
-      const v = calculateTotal();
+      // const v = calculateTotal();
       //  setTotalAmount(v);
     }
     if (inputValues) calculateTotal();
-  }, [data, inputValues]);
+  }, [data, inputValues, calculateTotal]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -82,7 +81,7 @@ const BillEntry = () => {
       <div ref={componentRef} className="p-5">
         <Row className="pt-1">
           <Col md="2">
-            <img src={ci} style={{ width: "150px" }} />
+            <img src={ci} alt="image" style={{ width: "150px" }} />
           </Col>
           <Col className="d-flex justify-content-center">
             <div>
