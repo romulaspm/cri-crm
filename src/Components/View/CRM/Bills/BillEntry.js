@@ -1,7 +1,7 @@
 import { useEffect, useState, React, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Col, Container, Input, Row, Table } from "reactstrap";
-import ci from "../../../../images/ci-cosmetic-clinic.jpg";
+import ci from "../../../../images/ci-cosmetic-clinic.jpeg";
 import "../../CRM/styles/style.css";
 import ReactToPrint from "react-to-print";
 
@@ -17,7 +17,15 @@ const BillEntry = () => {
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
   const [total, setTotal] = useState(0);
-
+  const [description, setDescription] = useState([
+    "DERMAT CONSULTATION",
+    "HAIRLOSS CONSULTATION",
+    "PRP",
+    "GFC",
+    "BIOTIN PRP",
+    "HAIR TRANSPLANT",
+  ]);
+  const [billEntryData, setBillEntryData] = useState([]);
   const [inputValues, setInputValues] = useState({
     input1: 0,
     input2: 0,
@@ -26,6 +34,16 @@ const BillEntry = () => {
     input5: 0,
     input6: 0,
   });
+  const calculateTotal = () => {
+    const values = Object.values(inputValues).map((value) => parseFloat(value));
+    const total = values.reduce((acc, currentValue) => {
+      const numericValue = parseFloat(currentValue);
+      return acc + numericValue;
+    }, 0);
+    console.log(total);
+    setTotal(parseFloat(total));
+    //  return total;
+  };
 
   useEffect(() => {
     console.log(data);
@@ -49,17 +67,7 @@ const BillEntry = () => {
     console.log(inputValues);
   };
   // 3535 ron bus
-
-  const calculateTotal = () => {
-    const values = Object.values(inputValues).map((value) => parseFloat(value));
-    const total = values.reduce((acc, currentValue) => {
-      const numericValue = parseFloat(currentValue);
-      return acc + numericValue;
-    }, 0);
-    console.log(total);
-    setTotal(parseFloat(total));
-    //  return total;
-  };
+  // km 65728 km 28-aug-23
 
   return (
     <Container ref={componentRef} className="p-5">
@@ -96,7 +104,6 @@ const BillEntry = () => {
           <Col md="3">
             <h4>Invoice</h4>
             <h6 className="mt-3">Date : {formatDate(date)}</h6>
-            <p>Treatment : {data && data.otData.treatmenttype}</p>
           </Col>
         </Row>
         <Row className="pt-5">
@@ -153,7 +160,35 @@ const BillEntry = () => {
           <tbody>
             <tr>
               <td>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  list="data"
+                  //  readOnly={MRN !== ""}
+                  onChange={(e) => {
+                    const mrn = data && data.otData.mrn;
+                    if (billEntryData.mrn !== mrn) {
+                      const temp = [
+                        {
+                          SlNo: e.target.key,
+                          mrn,
+                          date: formatDate(date),
+                          billEntry: [{ description }],
+                        },
+                      ];
+                      console.log(temp);
+
+                      setBillEntryData(e.target.value);
+                    } else {
+                      const temp = billEntryData;
+                      setBillEntryData(...temp, { description });
+                    }
+                  }}
+                />
+                <datalist id="data">
+                  {description.map((item, key) => (
+                    <option key={key} value={item} />
+                  ))}
+                </datalist>
               </td>
               <td>
                 <Input type="text" />

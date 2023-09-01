@@ -59,6 +59,30 @@ const CRM = () => {
     }
   };
 
+  const [treatmentTypeOptions] = useState([
+    "PRP SESSION WISE",
+    "PRP 3 SESSION PKG",
+    "PRP 6 SESSION PKG",
+    "PRP PKG",
+    "GFC SESSION WISE",
+    "GFC 3 SESSION PKG",
+    "GFC 6 SESSION PKG",
+    "GFC PKG",
+    "HAIR TRANSPLANT",
+    "HAIR TRANSPLANT FRONTAL AREA",
+    "HAIR TRANSPLANTATION 2000 GRAFTS",
+    "HAIR TRANSPLANTATION 2500 GRAFTS",
+    "HAIR TRANSPLANTATION 3000 GRAFTS",
+    "HAIR TRANSPLANTATION 3500 GRAFTS",
+    "HAIR TRANSPLANTATION 4000 GRAFTS",
+    "HAIR TRANSPLANTATION 4000 MAXIMUM COVERAGE",
+    "DERMAT CONSULTATION",
+    "HAIRLOSS CONSULTATION",
+    "PRP",
+    "GFC",
+    "BIOTIN PRP",
+    "HAIR TRANSPLANT",
+  ]);
   const formatDate = (date) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Intl.DateTimeFormat("en-US", options).format(date);
@@ -502,26 +526,18 @@ const CRM = () => {
                   <Label className="custom-col"> Treatment</Label>
                   <Col md="3">
                     <Input
-                      type="select"
+                      type="text"
+                      list="data"
                       readOnly={MRN !== ""}
                       onChange={(e) => {
                         setTreatmentType(e.target.value);
                       }}
-                    >
-                      <option
-                        value="PRP"
-                        // selected={treatmentType === "PRP"}
-                      >
-                        PRP
-                      </option>
-                      <option
-                        value="Hair Transplant"
-                        readOnly={MRN !== "" && !editMode}
-                        //  selected={treatmentType === "Hair Transplant"}
-                      >
-                        Hair Transplant
-                      </option>
-                    </Input>
+                    />
+                    <datalist id="data">
+                      {treatmentTypeOptions.map((item, key) => (
+                        <option key={key} value={item} />
+                      ))}
+                    </datalist>
                   </Col>
                 </Row>
                 <Row className="mt-4">
