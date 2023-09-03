@@ -34,22 +34,30 @@ const NavLeft = (props) => {
 
   const toggle = () => setModal(!modal);
 
-  useEffect(() => {
+  const getCustomers = () => {
     axios
       .get("https://cri-crm-d5cd0ee5dc74.herokuapp.com/customers")
       .then((res) => {
-        console.log(res);
         setSearch(res.data);
         props.customerDataHandler(res.data);
+        if (props.mrn) {
+          const temp = res.data.filter((item) => item.mrn === props.mrn);
+          console.log(temp);
+          setOTData(temp[0]);
+        }
         // setOTData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  };
+
+  useEffect(() => {
+    getCustomers();
+  }, [props.mrn]);
 
   useEffect(() => {
     if (searchInput) {
       const v = search.filter((cm) => {
-        console.log(cm);
+        // console.log(cm);
         return `${cm.contactno} ${cm.fname} ${cm.mrn}`
           .toLowerCase()
           .includes(searchInput.trim().toLowerCase());

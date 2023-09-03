@@ -199,7 +199,35 @@ const BillEntry = () => {
             </tr>
             <tr>
               <td>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  list="data"
+                  //  readOnly={MRN !== ""}
+                  onChange={(e) => {
+                    const mrn = data && data.otData.mrn;
+                    if (billEntryData.mrn !== mrn) {
+                      const temp = [
+                        {
+                          SlNo: e.target.key,
+                          mrn,
+                          date: formatDate(date),
+                          billEntry: [{ description }],
+                        },
+                      ];
+                      console.log(temp);
+
+                      setBillEntryData(e.target.value);
+                    } else {
+                      const temp = billEntryData;
+                      setBillEntryData(...temp, { description });
+                    }
+                  }}
+                />
+                <datalist id="data">
+                  {description.map((item, key) => (
+                    <option key={key} value={item} />
+                  ))}
+                </datalist>
               </td>
               <td>
                 <Input type="text" />
@@ -210,7 +238,35 @@ const BillEntry = () => {
             </tr>
             <tr>
               <td>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  list="data"
+                  //  readOnly={MRN !== ""}
+                  onChange={(e) => {
+                    const mrn = data && data.otData.mrn;
+                    if (billEntryData.mrn !== mrn) {
+                      const temp = [
+                        {
+                          SlNo: e.target.key,
+                          mrn,
+                          date: formatDate(date),
+                          billEntry: [{ description }],
+                        },
+                      ];
+                      console.log(temp);
+
+                      setBillEntryData(e.target.value);
+                    } else {
+                      const temp = billEntryData;
+                      setBillEntryData(...temp, { description });
+                    }
+                  }}
+                />
+                <datalist id="data">
+                  {description.map((item, key) => (
+                    <option key={key} value={item} />
+                  ))}
+                </datalist>
               </td>
               <td>
                 <Input type="text" />
@@ -221,7 +277,35 @@ const BillEntry = () => {
             </tr>
             <tr>
               <td>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  list="data"
+                  //  readOnly={MRN !== ""}
+                  onChange={(e) => {
+                    const mrn = data && data.otData.mrn;
+                    if (billEntryData.mrn !== mrn) {
+                      const temp = [
+                        {
+                          SlNo: e.target.key,
+                          mrn,
+                          date: formatDate(date),
+                          billEntry: [{ description }],
+                        },
+                      ];
+                      console.log(temp);
+
+                      setBillEntryData(e.target.value);
+                    } else {
+                      const temp = billEntryData;
+                      setBillEntryData(...temp, { description });
+                    }
+                  }}
+                />
+                <datalist id="data">
+                  {description.map((item, key) => (
+                    <option key={key} value={item} />
+                  ))}
+                </datalist>
               </td>
               <td>
                 <Input type="text" />
@@ -232,7 +316,35 @@ const BillEntry = () => {
             </tr>{" "}
             <tr>
               <td>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  list="data"
+                  //  readOnly={MRN !== ""}
+                  onChange={(e) => {
+                    const mrn = data && data.otData.mrn;
+                    if (billEntryData.mrn !== mrn) {
+                      const temp = [
+                        {
+                          SlNo: e.target.key,
+                          mrn,
+                          date: formatDate(date),
+                          billEntry: [{ description }],
+                        },
+                      ];
+                      console.log(temp);
+
+                      setBillEntryData(e.target.value);
+                    } else {
+                      const temp = billEntryData;
+                      setBillEntryData(...temp, { description });
+                    }
+                  }}
+                />
+                <datalist id="data">
+                  {description.map((item, key) => (
+                    <option key={key} value={item} />
+                  ))}
+                </datalist>
               </td>
               <td>
                 <Input type="text" />
@@ -243,7 +355,35 @@ const BillEntry = () => {
             </tr>{" "}
             <tr>
               <td>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  list="data"
+                  //  readOnly={MRN !== ""}
+                  onChange={(e) => {
+                    const mrn = data && data.otData.mrn;
+                    if (billEntryData.mrn !== mrn) {
+                      const temp = [
+                        {
+                          SlNo: e.target.key,
+                          mrn,
+                          date: formatDate(date),
+                          billEntry: [{ description }],
+                        },
+                      ];
+                      console.log(temp);
+
+                      setBillEntryData(e.target.value);
+                    } else {
+                      const temp = billEntryData;
+                      setBillEntryData(...temp, { description });
+                    }
+                  }}
+                />
+                <datalist id="data">
+                  {description.map((item, key) => (
+                    <option key={key} value={item} />
+                  ))}
+                </datalist>
               </td>
               <td>
                 <Input type="text" />
@@ -253,7 +393,16 @@ const BillEntry = () => {
               </td>
             </tr>
             <tr scope="row">
-              <td colSpan={2}>Total</td>
+              <td
+                colSpan={2}
+                style={{
+                  textAlign: "end",
+                  fontWeight: "bold",
+                  paddingTop: "15px",
+                }}
+              >
+                Total
+              </td>
               <td>
                 {" "}
                 <Input readOnly value={total} />

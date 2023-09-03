@@ -55,10 +55,10 @@ const Booking = () => {
   };
 
   useEffect(() => {
-    console.log(data);
     if (data.token) {
       getAppointments();
     }
+
     console.log(data);
   }, [selectedDate]);
 
@@ -73,7 +73,7 @@ const Booking = () => {
   }, [appointmentData, data]);
 
   const bookingHandler = () => {
-    if (formatDate(selectedDate) < Today) {
+    if (new Date(selectedDate).getTime() < new Date().getTime()) {
       alert("Please select future date");
     } else if (
       appointmentDataFilter.length &&
@@ -260,7 +260,7 @@ const Booking = () => {
 
               const appointmentDateWithoutTime = new Date(app.appointmentdate);
               appointmentDateWithoutTime.setHours(0, 0, 0, 0); // Set time to midnight
-              if (data.otData && data.otData.mrn !== app.mrn) {
+              if (data.otData && app.mrn && data.otData.mrn !== app.mrn) {
                 const cm = appointmentHandler(app.mrn);
                 return (
                   <Toast>
@@ -282,6 +282,93 @@ const Booking = () => {
                     </ToastBody>
                   </Toast>
                 );
+              } else if (data.customerData) {
+                return data.customerData.map((item) => {
+                  if (
+                    app.mrn === item.mrn &&
+                    data.otData &&
+                    item.mrn !== data.otData.mrn
+                  ) {
+                    return (
+                      <Toast>
+                        <Fragment>
+                          <ToastHeader>
+                            {" "}
+                            Customer Name:{" "}
+                            <div>
+                              {item.fname} {item.sname} <br />
+                              MRN : {app.mrn} <br />
+                              Treatment : {item.treatmenttype} <br />
+                              Contact No: {item.contactno} <br />
+                              Date:{app.appointmentdate} <br />
+                              Time: {app.time}
+                              <br />
+                              Doctor Name: {app.doctor}
+                            </div>
+                          </ToastHeader>
+                          <div className="d-flex justify-content-end p-1">
+                            {appointmentDateWithoutTime >=
+                              currentDateWithoutTime && (
+                              <Button size="sm" onClick={bookingHandler}>
+                                Edit
+                              </Button>
+                            )}
+                            <Button
+                              size="sm"
+                              onClick={() =>
+                                deleteAppointmentHandler(
+                                  app.appointmentdate,
+                                  app._id
+                                )
+                              }
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </Fragment>
+                      </Toast>
+                    );
+                  } else if (app.mrn === item.mrn)
+                    return (
+                      <Toast>
+                        <Fragment>
+                          <ToastHeader>
+                            {" "}
+                            Customer Name:{" "}
+                            <div>
+                              {item.fname} {item.sname} <br />
+                              MRN : {app.mrn} <br />
+                              Treatment : {item.treatmenttype} <br />
+                              Contact No: {item.contactno} <br />
+                              Date:{app.appointmentdate} <br />
+                              Time: {app.time}
+                              <br />
+                              Doctor Name: {app.doctor}
+                            </div>
+                          </ToastHeader>
+                          <div className="d-flex justify-content-end p-1">
+                            {appointmentDateWithoutTime >=
+                              currentDateWithoutTime && (
+                              <Button size="sm" onClick={bookingHandler}>
+                                Edit
+                              </Button>
+                            )}
+                            <Button
+                              size="sm"
+                              onClick={() =>
+                                deleteAppointmentHandler(
+                                  app.appointmentdate,
+                                  app._id
+                                )
+                              }
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </Fragment>
+                      </Toast>
+                    );
+                });
               }
             })}
         </Col>

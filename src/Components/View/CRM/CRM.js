@@ -52,6 +52,8 @@ const CRM = () => {
   const toggle = () => setModal(!modal);
   const [modalName, setModalName] = useState("");
   const [sex, setSex] = useState("male");
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [otData, setOTData] = useState("");
   const toggleEdit = () => {
     setModal(!modal);
     if (MRN) {
@@ -156,9 +158,24 @@ const CRM = () => {
 
       if (response.status === 200) {
         // Handle successful login
+        setSaveSuccess(true);
         alert("Save successful");
         console.log(response.data);
         setMRN(response.data.mrn);
+        setOTData([
+          {
+            fname,
+            sname,
+            contactno,
+            address,
+            treatmenttype,
+            remarks,
+            patientcoordinator,
+            date: formatDate(date),
+            dob,
+            mrn: response.data.mrn,
+          },
+        ]);
       } else {
         // Handle failed login
         console.log("Invalid credentials");
@@ -198,8 +215,8 @@ const CRM = () => {
   };
 
   const handleSubmit = async () => {
+    setSaveSuccess(false);
     if (MRN && editMode) {
-      alert("MRN && edit");
       try {
         const response = await axios.post(
           "https://cri-crm-d5cd0ee5dc74.herokuapp.com/edit-customer",
@@ -359,28 +376,17 @@ const CRM = () => {
                   <Col>
                     <Button
                       onClick={() => {
-                        const otData = {
-                          fname,
-                          sname,
-                          contactno,
-                          address,
-                          treatmenttype,
-                          remarks,
-                          patientcoordinator,
-                          date: formatDate(date),
-                          dob,
-                          mrn: MRN,
-                        };
-                        if (otData && otData.mrn) {
+                        if (otData && otData[0].mrn) {
                           navigate("/otBooking", {
                             //replace: true,
                             state: {
-                              otData,
+                              otData: otData[0],
                               customerData,
                               token,
                             },
                           });
                         } else {
+                          console.log(otData[0]);
                           alert("please select a customer");
                         }
                       }}
@@ -396,7 +402,7 @@ const CRM = () => {
         <Row></Row>
       </Col>
     );
-  }, [appointment]);
+  }, [appointment, otData]);
 
   const main = useMemo(() => {
     return (
@@ -418,6 +424,7 @@ const CRM = () => {
                 customerDataHandler={customerDataHandler}
                 customerData={customerData}
                 token={token}
+                mrn={MRN}
               />
               <Col>
                 <Row>
@@ -476,7 +483,7 @@ const CRM = () => {
                       value={dob}
                       readOnly={MRN !== "" && !editMode}
                       onChange={(e) => {
-                        console.log(e.target.value);
+                        //   console.log(e.target.value);
                         setDOB(e.target.value);
                       }}
                     />
@@ -524,7 +531,7 @@ const CRM = () => {
 
                 <Row className="mt-4">
                   <Label className="custom-col"> Treatment</Label>
-                  <Col md="3">
+                  <Col md="8">
                     <Input
                       type="text"
                       list="data"
